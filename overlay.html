@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" class="overlay-page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streak overlay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="overlay-page">
+    <div class="overlay-root" id="root">
+      <canvas id="bg"></canvas>
+      <canvas id="fx"></canvas>
+      <div class="badge" id="badge">
+        <div class="badge-halo">
+          <div class="badge-rainbow"></div>
+        </div>
+        <div class="badge-face">
+          <div class="miles" id="badgeMiles">1,000 mi</div>
+          <div class="label" id="badgeLabel">Streak Reached</div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./overlay.js"></script>
+  </body>
+</html>

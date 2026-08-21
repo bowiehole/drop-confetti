@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streak — FSD milestone confetti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="studio">
+      <header class="topbar">
+        <div class="brand">
+          <strong>STREAK</strong>
+          <span>FSD milestone confetti generator & overlay</span>
+        </div>
+        <div class="top-actions">
+          <button class="ghost" id="sequence" type="button">Play 250→5k</button>
+          <button class="ghost" id="fullscreen" type="button">Fullscreen</button>
+          <button class="primary" id="openOverlay" type="button">Open overlay</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <section class="section">
+            <h2>Milestones</h2>
+            <div class="milestones" id="milestones"></div>
+          </section>
+
+          <section class="section">
+            <h2>Badge</h2>
+            <div class="inline">
+              <div class="field">
+                <label for="miles">Miles</label>
+                <input id="miles" type="number" min="0" step="1" value="1000" />
+              </div>
+              <div class="field">
+                <label for="unit">Unit</label>
+                <select id="unit">
+                  <option value="mi">mi</option>
+                  <option value="km">km</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="label">Caption</label>
+              <input id="label" type="text" value="Streak Reached" />
+            </div>
+            <label class="check">
+              <input id="badgeOn" type="checkbox" checked />
+              Show milestone badge
+            </label>
+          </section>
+
+          <section class="section">
+            <h2>Style</h2>
+            <div class="styles" id="styles"></div>
+          </section>
+
+          <section class="section">
+            <h2>Motion</h2>
+            <div class="field">
+              <div class="row-label"><span>Density</span><span id="densityVal">1.00</span></div>
+              <input id="density" type="range" min="0.35" max="2.4" step="0.05" value="1" />
+            </div>
+            <div class="field">
+              <div class="row-label"><span>Size</span><span id="sizeVal">1.00</span></div>
+              <input id="size" type="range" min="0.5" max="2" step="0.05" value="1" />
+            </div>
+            <div class="field">
+              <div class="row-label"><span>Gravity</span><span id="gravityVal">1.00</span></div>
+              <input id="gravity" type="range" min="0.35" max="2" step="0.05" value="1" />
+            </div>
+            <div class="field">
+              <div class="row-label"><span>Wind</span><span id="windVal">0.0</span></div>
+              <input id="wind" type="range" min="-2" max="2" step="0.1" value="0" />
+            </div>
+            <div class="field">
+              <div class="row-label"><span>Duration</span><span id="durationVal">7s</span></div>
+              <input id="duration" type="range" min="2000" max="14000" step="250" value="6500" />
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Colors</h2>
+            <div class="chips" id="palettes"></div>
+            <div class="swatches" id="swatches" style="margin-top: 10px"></div>
+            <label class="swatch-add" style="margin-top: 8px">
+              +
+              <input id="addColor" type="color" value="#ff2e93" />
+            </label>
+          </section>
+
+          <section class="section">
+            <h2>Preview photo</h2>
+            <p class="help">Drop a screenshot on the stage, or choose a file, to test the overlay on a real display.</p>
+            <input id="photoInput" type="file" accept="image/*" />
+            <div style="height: 8px"></div>
+            <button class="ghost" id="clearPhoto" type="button">Clear photo</button>
+          </section>
+
+          <section class="section overlay-box">
+            <h2>Overlay</h2>
+            <p class="help">
+              Transparent page for OBS or a second display. Space fires, C clears, click retriggers.
+              Send <code>{ type: "confetti", miles: 1000 }</code> via postMessage.
+            </p>
+            <textarea id="overlayUrl" readonly></textarea>
+            <button class="ghost" id="copyOverlay" type="button">Copy overlay link</button>
+          </section>
+
+          <p class="help">Shortcuts: <kbd>Space</kbd> celebrate · <kbd>C</kbd> clear · <kbd>F</kbd> fullscreen</p>
+        </aside>
+
+        <div class="stage-wrap">
+          <div class="stage" id="stage">
+            <canvas id="bg"></canvas>
+            <img class="stage-photo" id="photo" alt="" />
+            <canvas id="fx"></canvas>
+            <div class="hud" id="hud">
+              <div class="speed">64<small>MPH</small></div>
+              <div class="fsd">Self-Driving</div>
+              <div class="muted" id="hudStreak">1,000 mi<br />Streak</div>
+            </div>
+            <div class="badge" id="badge">
+              <div class="badge-halo">
+                <div class="badge-rainbow"></div>
+              </div>
+              <div class="badge-face">
+                <div class="miles" id="badgeMiles">1,000 mi</div>
+                <div class="label" id="badgeLabel">Streak Reached</div>
+              </div>
+            </div>
+            <div class="stage-bar">
+              <button class="ghost" id="clear" type="button">Clear</button>
+              <button class="primary" id="fire" type="button">Celebrate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./studio.js"></script>
+  </body>
+</html>

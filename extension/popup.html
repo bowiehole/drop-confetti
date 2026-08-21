@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streak Confetti</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <strong>STREAK</strong>
+        <span>X.com scroll streaks + confetti</span>
+      </div>
+      <label class="switch">
+        <input id="tracking" type="checkbox" checked />
+        Track
+      </label>
+    </header>
+
+    <section class="track-card">
+      <h2>Monitor</h2>
+      <div class="mode" id="trackMode">
+        <button type="button" data-mode="mouse">Mouse</button>
+        <button type="button" data-mode="scroll" class="active">Scroll</button>
+      </div>
+
+      <label>
+        Only on
+        <input id="trackUrl" type="text" value="x.com" placeholder="x.com or any URL" />
+      </label>
+
+      <h2>FSD ÷ 100</h2>
+      <div class="chips" id="autoMilestones"></div>
+
+      <div class="progress">
+        <div class="progress-top">
+          <span id="progressLabel">Streak</span>
+          <span id="progressValue">0 / 1 mi</span>
+        </div>
+        <div class="bar"><i id="progressBar"></i></div>
+      </div>
+
+      <dl class="stats" id="stats">
+        <div><dt>Streak</dt><dd id="statAll">0 mi</dd></div>
+      </dl>
+      <p class="live" id="live">Waiting for scroll on x.com…</p>
+      <button class="ghost slim" id="resetScope" type="button">Reset streak</button>
+    </section>
+
+    <section>
+      <h2>Manual celebrate</h2>
+      <div class="chips" id="milestones"></div>
+    </section>
+
+    <section class="row">
+      <label>
+        Miles
+        <input id="miles" type="number" min="0" step="1" value="1000" />
+      </label>
+      <label>
+        Unit
+        <select id="unit">
+          <option value="mi">mi</option>
+          <option value="km">km</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <label>
+        Caption
+        <input id="label" type="text" value="Streak Reached" />
+      </label>
+      <label class="check">
+        <input id="badge" type="checkbox" checked />
+        Show badge
+      </label>
+    </section>
+
+    <section>
+      <h2>Style</h2>
+      <div class="chips" id="styles"></div>
+    </section>
+
+    <section>
+      <h2>Motion</h2>
+      <label class="slider">
+        <span>Density <em id="densityVal">1.00</em></span>
+        <input id="density" type="range" min="0.35" max="2.4" step="0.05" value="1" />
+      </label>
+      <label class="slider">
+        <span>Size <em id="sizeVal">1.00</em></span>
+        <input id="size" type="range" min="0.5" max="2" step="0.05" value="1" />
+      </label>
+    </section>
+
+    <div class="actions">
+      <button class="ghost" id="clear" type="button">Clear</button>
+      <button class="ghost" id="sequence" type="button">250→5k</button>
+      <button class="primary" id="fire" type="button">Celebrate</button>
+    </div>
+
+    <p class="status" id="status"></p>
+    <p class="help">
+      Streak never resets unless you hit Reset or change the site above.
+      First mark (1 mi) matches 100 FSD miles at 70 mph — about 1.4 hours of scrolling.
+      Alt+Shift+S fire · Alt+Shift+C clear
+    </p>
+    <script src="units.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

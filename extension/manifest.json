@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Streak Confetti",
+  "version": "1.3.17",
+  "description": "Scroll-streak confetti for x.com (or any URL you set). FSD-style milestones; the streak only resets if you reset it.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Streak Confetti",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["tracker.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "fire-streak": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Fire streak confetti on this page"
+    },
+    "clear-streak": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "Clear streak confetti"
+    }
+  }
+}
